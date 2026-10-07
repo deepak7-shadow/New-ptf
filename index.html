@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deepak R — Computer Science &amp; Engineering | Applied AI &amp; IoT Portfolio (2026)</title>
+    <meta
+      name="description"
+      content="Personal portfolio of Deepak R, Computer Science & Engineering student at Shri Venkateshwara College of Engineering exploring how AI, connected hardware (ESP32/Blynk IoT), and thoughtful software solve real problems."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- Custom Cyber Magnetic Cursor -->
+    <div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-ring" class="cursor-ring" aria-hidden="true">
+      <span id="cursor-label" class="cursor-label"></span>
+    </div>
+
+    <!-- Preloader Screen -->
+    <div id="preloader" class="preloader">
+      <div class="preloader__inner">
+        <div class="preloader__rings">
+          <div class="ring-pulse"></div>
+          <div class="ring-core"></div>
+        </div>
+        <div class="preloader__brand">DEEPAK R // FIELD LOG 2026</div>
+        <div class="preloader__bar-wrap">
+          <div id="preload-bar" class="preloader__bar"></div>
+        </div>
+        <div class="preloader__meta">
+          <span id="preload-status">STREAMING NEURAL SEQUENCE [0/300]</span>
+          <span id="preload-pct">0%</span>
+        </div>
+        <div class="preloader__hint">READINESS: 0.94 // 13°02'N, 77°35'E (BANGALORE)</div>
+      </div>
+    </div>
+
+    <!-- Dual-Layer Viewport: 300-Frame Background + Interactive 3D Three.js Overlay -->
+    <div class="canvas-viewport" id="canvas-container">
+      <canvas id="sequence-canvas"></canvas>
+      <canvas id="three-canvas" class="three-canvas"></canvas>
+      <div class="canvas-overlay canvas-vignette"></div>
+      <div class="canvas-overlay canvas-scanlines"></div>
+      <div class="canvas-overlay canvas-noise"></div>
+    </div>
+
+    <!-- Fixed Header Navigation HUD -->
+    <header class="hud-header">
+      <a href="#scene-hero" class="hud-brand" data-cursor="DR">
+        <span class="hud-brand__symbol">DR</span>
+        <span class="hud-brand__name">DEEPAK R</span>
+        <span class="hud-brand__badge">CSE · AI &amp; IOT</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hud-nav-links hide-mobile">
+        <a href="#scene-hero" class="nav-anchor active">Home</a>
+        <a href="#scene-matrix" class="nav-anchor">Profile</a>
+        <a href="#scene-vault" class="nav-anchor">Projects</a>
+        <a href="#scene-lab" class="nav-anchor">Toolkit</a>
+        <a href="#scene-honors" class="nav-anchor">Education</a>
+        <a href="#scene-contact" class="nav-anchor">Contact</a>
+      </nav>
+
+      <div class="hud-telemetry hide-mobile">
+        <span class="telemetry-item">
+          <span class="pulse-indicator"></span>
+          <span class="telemetry-label">STAGE:</span> 2ND YR / SEM III
+        </span>
+        <span class="telemetry-item">
+          <span class="telemetry-label">CGPA:</span> 9.4 / 10
+        </span>
+        <span class="telemetry-item">
+          <span class="telemetry-label">IST:</span> <span id="clock-display">12:00:00</span>
+        </span>
+      </div>
+
+      <div class="hud-actions">
+        <!-- Direct LinkedIn Nav Link -->
+        <a
+          href="https://www.linkedin.com/in/deepak-r-701b59429/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hud-btn hud-btn--social hide-mobile"
+          data-cursor="linkedin"
+          title="Deepak R LinkedIn Profile"
+        >
+          <span>LINKEDIN</span>
+          <span class="btn-arrow-up">↗</span>
+        </a>
+
+        <!-- Spatial Audio Toggle -->
+        <button id="sound-btn" class="hud-btn hud-sound-btn" title="Toggle Spatial Audio" data-cursor="audio">
+          <span class="sound-wave">
+            <span></span><span></span><span></span><span></span>
+          </span>
+          <span id="sound-text">AUDIO OFF</span>
+        </button>
+
+        <a href="mailto:deepak843161.438@gmail.com" class="hud-btn hud-btn--primary hide-mobile" data-cursor="let's talk">
+          LET'S TALK ↗
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button id="mobile-toggle" class="hud-btn hud-mobile-btn show-mobile-only" aria-label="Toggle navigation menu">
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-drawer" class="mobile-drawer">
+      <div class="mobile-drawer__inner">
+        <div class="mobile-meta">
+          <span class="hud-brand__symbol">DR</span>
+          <span>DEEPAK R // FIELD LOG 2026</span>
+        </div>
+        <nav class="mobile-links">
+          <a href="#scene-hero" class="mob-link">01 // Field Home</a>
+          <a href="#scene-matrix" class="mob-link">02 // Profile Matrix</a>
+          <a href="#scene-vault" class="mob-link">03 // Selected Projects</a>
+          <a href="#scene-lab" class="mob-link">04 // Toolkit Lab</a>
+          <a href="#scene-honors" class="mob-link">05 // Education &amp; Score</a>
+          <a href="#scene-contact" class="mob-link">06 // Connect</a>
+        </nav>
+        <div class="mobile-bottom">
+          <a
+            href="https://www.linkedin.com/in/deepak-r-701b59429/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--solid w-full"
+          >
+            LinkedIn Profile ↗
+          </a>
+          <a href="mailto:deepak843161.438@gmail.com" class="btn btn--glass w-full">
+            deepak843161.438@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side Scrubber & Orbit Radar -->
+    <aside class="hud-radar">
+      <div class="radar-track">
+        <div id="radar-indicator" class="radar-thumb"></div>
+      </div>
+      <div class="radar-points">
+        <button class="radar-btn active" data-target="0" data-cursor="01 HERO">
+          <span class="radar-num">01</span>
+          <span class="radar-tag">HERO</span>
+        </button>
+        <button class="radar-btn" data-target="0.22" data-cursor="02 PROFILE">
+          <span class="radar-num">02</span>
+          <span class="radar-tag">PROFILE</span>
+        </button>
+        <button class="radar-btn" data-target="0.46" data-cursor="03 PROJECTS">
+          <span class="radar-num">03</span>
+          <span class="radar-tag">PROJECTS</span>
+        </button>
+        <button class="radar-btn" data-target="0.70" data-cursor="04 TOOLKIT">
+          <span class="radar-num">04</span>
+          <span class="radar-tag">TOOLKIT</span>
+        </button>
+        <button class="radar-btn" data-target="0.85" data-cursor="05 EDUCATION">
+          <span class="radar-num">05</span>
+          <span class="radar-tag">EDUCATION</span>
+        </button>
+        <button class="radar-btn" data-target="0.96" data-cursor="06 CONNECT">
+          <span class="radar-num">06</span>
+          <span class="radar-tag">CONNECT</span>
+        </button>
+      </div>
+      <div class="radar-frame-counter">
+        <span class="counter-label">FRAME</span>
+        <span id="frame-num-display" class="counter-val">001 / 300</span>
+      </div>
+    </aside>
+
+    <!-- Main Scroll Scrollytelling Stage -->
+    <main class="scroll-stage" id="scroll-stage">
+      
+      <!-- SCENE 1: THE CORE / FIELD HERO (0% - 18%) -->
+      <section class="scene-stage active" id="scene-hero" data-range="0,0.18">
+        <div class="scene-container hero-scene">
+          <div class="hud-pill anim-fade-up">
+            <span class="pill-dot"></span>
+            <span>FIELD NOTE / 2026 • CSE STUDENT · APPLIED AI &amp; IOT</span>
+          </div>
+
+          <h1 class="hero-title anim-fade-up" style="--delay: 0.1s">
+            <span class="hero-title__row">BUILDING SYSTEMS</span>
+            <span class="hero-title__row font-serif italic text-glow">THAT NOTICE</span>
+            <span class="hero-title__row">WHAT MATTERS.</span>
+          </h1>
+
+          <p class="hero-lede anim-fade-up" style="--delay: 0.2s">
+            I'm <strong>Deepak R</strong>, a Computer Science &amp; Engineering student at Shri Venkateshwara College of Engineering exploring how AI, connected hardware, and thoughtful software can solve practical problems.
+          </p>
+
+          <div class="hero-protocol anim-fade-up" style="--delay: 0.25s">
+            <span class="protocol-chip"><b>01</b> OBSERVE</span>
+            <span class="protocol-chip"><b>02</b> DECIDE</span>
+            <span class="protocol-chip"><b>03</b> ACT</span>
+          </div>
+
+          <div class="hero-actions anim-fade-up" style="--delay: 0.3s">
+            <button class="btn btn--solid btn-magnetic" id="hero-enter-btn" data-cursor="explore">
+              <span>INSPECT MY PROJECTS</span>
+              <span class="btn-arrow">↓</span>
+            </button>
+
+            <a
+              href="https://www.linkedin.com/in/deepak-r-701b59429/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--glass btn-magnetic"
+              data-cursor="linkedin"
+            >
+              <span>LINKEDIN PROFILE</span>
+              <span class="btn-arrow-up">↗</span>
+            </a>
+
+            <a href="mailto:deepak843161.438@gmail.com" class="btn btn--glass btn-magnetic" data-cursor="email">
+              <span>WRITE TO ME ↗</span>
+            </a>
+          </div>
+
+          <div class="hero-scroll-cue anim-fade-up" style="--delay: 0.4s">
+            <div class="cue-wheel">
+              <span class="cue-dot"></span>
+            </div>
+            <span class="cue-text">SCROLL TO TRAVEL THROUGH THE 3D FIELD SYSTEM</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 2: THE METROPOLIS MATRIX / PROFILE (19% - 40%) -->
+      <section class="scene-stage" id="scene-matrix" data-range="0.19,0.40">
+        <div class="scene-container matrix-scene">
+          <div class="matrix-header">
+            <div class="hud-pill">
+              <span class="pill-dot"></span>
+              <span>PROFILE / WHO I AM // 01</span>
+            </div>
+            <h2 class="scene-heading">
+              CURIOSITY WITH A <span class="font-serif italic text-glow">PRACTICAL</span> DIRECTION.
+            </h2>
+            <p class="matrix-sub">
+              Currently in my second year of B.E. Computer Science &amp; Engineering, building a strong foundation in programming while moving toward applied AI and connected devices.
+            </p>
+          </div>
+
+          <div class="matrix-grid">
+            <div class="matrix-card active-card card-3d-tilt" data-cursor="iot">
+              <div class="card-accent"></div>
+              <div class="card-glare"></div>
+              <div class="card-head">
+                <span class="card-index">01</span>
+                <span class="card-tag">CONNECTED HARDWARE</span>
+              </div>
+              <h3 class="card-title">IoT &amp; EMBEDDED</h3>
+              <p class="card-desc">
+                Building physical microcontrollers, wireless telemetry, sensor inputs, and actuators that connect digital logic to the physical field.
+              </p>
+              <div class="card-pills">
+                <span>ESP32</span>
+                <span>Blynk IoT</span>
+                <span>Hardware Sensors</span>
+              </div>
+            </div>
+
+            <div class="matrix-card card-3d-tilt" data-cursor="vision">
+              <div class="card-accent"></div>
+              <div class="card-glare"></div>
+              <div class="card-head">
+                <span class="card-index">02</span>
+                <span class="card-tag">APPLIED INTELLIGENCE</span>
+              </div>
+              <h3 class="card-title">APPLIED AI &amp; VISION</h3>
+              <p class="card-desc">
+                Observing real conditions through device cameras and machine intelligence to make automated, need-based decisions with zero waste.
+              </p>
+              <div class="card-pills">
+                <span>MediaPipe</span>
+                <span>Computer Vision</span>
+                <span>Decision Trees</span>
+              </div>
+            </div>
+
+            <div class="matrix-card card-3d-tilt" data-cursor="code">
+              <div class="card-accent"></div>
+              <div class="card-glare"></div>
+              <div class="card-head">
+                <span class="card-index">03</span>
+                <span class="card-tag">CORE ENGINEERING</span>
+              </div>
+              <h3 class="card-title">PROGRAMMING</h3>
+              <p class="card-desc">
+                Writing robust, efficient code across fundamental languages, web craft, and modern reactive application interfaces.
+              </p>
+              <div class="card-pills">
+                <span>C++</span>
+                <span>Python</span>
+                <span>React &amp; TypeScript</span>
+              </div>
+            </div>
+
+            <div class="matrix-card card-3d-tilt" data-cursor="systems">
+              <div class="card-accent"></div>
+              <div class="card-glare"></div>
+              <div class="card-head">
+                <span class="card-index">04</span>
+                <span class="card-tag">PROBLEM SOLVING</span>
+              </div>
+              <h3 class="card-title">SYSTEMS THINKING</h3>
+              <p class="card-desc">
+                Analytical problem-solving, rapid prototyping, and collaborative development focused on high-impact practical utility.
+              </p>
+              <div class="card-pills">
+                <span>FlutterFlow</span>
+                <span>Git</span>
+                <span>Chess Strategy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 3: THE VAULT / SELECTED WORKS (41% - 66%) -->
+      <section class="scene-stage" id="scene-vault" data-range="0.41,0.66">
+        <div class="scene-container vault-scene">
+          <div class="vault-header">
+            <div>
+              <div class="hud-pill">
+                <span class="pill-dot"></span>
+                <span>SELECTED WORK / FIELD PROTOTYPES // 02</span>
+              </div>
+              <h2 class="scene-heading">
+                SYSTEMS TESTED IN <span class="font-serif italic text-glow">THE FIELD.</span>
+              </h2>
+            </div>
+            <p class="vault-caption hide-mobile">
+              Click any project card to inspect deep technical specifications, hardware/software stack, and architecture traces.
+            </p>
+          </div>
+
+          <div class="vault-stage">
+            <!-- Project 01: Smart Pesticide Nozzle -->
+            <article class="project-card project-card--1 card-3d-tilt" data-project="nozzle" data-cursor="inspect build">
+              <div class="project-glass">
+                <div class="card-glare"></div>
+                <div class="project-meta-row">
+                  <span class="project-id">PROJECT 01 // ONGOING</span>
+                  <span class="project-badge">AGRI-TECH • IOT • ESP32</span>
+                </div>
+                <h3 class="project-name">SMART PESTICIDE NOZZLE</h3>
+                <p class="project-summary">
+                  Precision-agriculture system identifying crop areas requiring treatment and spraying only the necessary amount—reducing chemical waste and environmental impact.
+                </p>
+                <div class="project-footer">
+                  <span class="project-tech">ESP32 • Blynk IoT • FlutterFlow</span>
+                  <button class="project-cta-btn">INSPECT PROTOCOL ↗</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 02: SignBridge -->
+            <article class="project-card project-card--2 card-3d-tilt" data-project="signbridge" data-cursor="inspect build">
+              <div class="project-glass">
+                <div class="card-glare"></div>
+                <div class="project-meta-row">
+                  <span class="project-id">PROJECT 02 // PROTOTYPE</span>
+                  <span class="project-badge">ACCESSIBILITY • COMPUTER VISION</span>
+                </div>
+                <h3 class="project-name">SIGNBRIDGE</h3>
+                <p class="project-summary">
+                  Indian Sign Language (ISL) communication web application bringing camera-based hand tracking, curated vocabulary, text &amp; speech synthesis into one approachable experience.
+                </p>
+                <div class="project-footer">
+                  <span class="project-tech">MediaPipe • React • Web Speech API</span>
+                  <button class="project-cta-btn">INSPECT PROTOCOL ↗</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 03: ArenaHub -->
+            <article class="project-card project-card--3 card-3d-tilt" data-project="arenahub" data-cursor="inspect build">
+              <div class="project-glass">
+                <div class="card-glare"></div>
+                <div class="project-meta-row">
+                  <span class="project-id">PROJECT 03 // FULL-STACK</span>
+                  <span class="project-badge">SPORTS PLATFORM • WORKFLOWS</span>
+                </div>
+                <h3 class="project-name">ARENAHUB</h3>
+                <p class="project-summary">
+                  Multi-role sports venue discovery and court-booking platform connecting players, arena owners, and admins with conflict-free slot scheduling and verified payment state.
+                </p>
+                <div class="project-footer">
+                  <span class="project-tech">Full-Stack Web • Role RBAC • Payments</span>
+                  <button class="project-cta-btn">INSPECT PROTOCOL ↗</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 04: Connected Field System -->
+            <article class="project-card project-card--4 card-3d-tilt" data-project="fieldtelemetry" data-cursor="inspect build">
+              <div class="project-glass">
+                <div class="card-glare"></div>
+                <div class="project-meta-row">
+                  <span class="project-id">PROJECT 04 // RESEARCH</span>
+                  <span class="project-badge">SYSTEMS • TELEMETRY</span>
+                </div>
+                <h3 class="project-name">FIELD TELEMETRY</h3>
+                <p class="project-summary">
+                  Live sensor contour mapping and microcontroller diagnostics testbed recording coordinates (13°02'N / 77°35'E) and system readiness status in real time.
+                </p>
+                <div class="project-footer">
+                  <span class="project-tech">C++ • Microcontrollers • Wireless Sensors</span>
+                  <button class="project-cta-btn">INSPECT PROTOCOL ↗</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 4: TOOLKIT & THE LAB (67% - 82%) -->
+      <section class="scene-stage" id="scene-lab" data-range="0.67,0.82">
+        <div class="scene-container lab-scene">
+          <div class="lab-split">
+            <div class="lab-info">
+              <div class="hud-pill">
+                <span class="pill-dot"></span>
+                <span>TOOLKIT // BUILDING BLOCKS // 03</span>
+              </div>
+              <h2 class="scene-heading">
+                TOOLS FOR TURNING AN IDEA <span class="font-serif italic text-glow">INTO A SYSTEM.</span>
+              </h2>
+              <p class="lab-text">
+                A growing technical foundation shaped by code, web craft, embedded hardware, and practical experimentation. I bring a quick-learning mindset and analytical approach to every new system.
+              </p>
+
+              <div class="lab-metrics">
+                <div class="metric-block">
+                  <span class="metric-val">9.4<small>/10</small></span>
+                  <span class="metric-label">1st Yr CGPA</span>
+                </div>
+                <div class="metric-block">
+                  <span class="metric-val">ESP32</span>
+                  <span class="metric-label">Microcontroller</span>
+                </div>
+                <div class="metric-block">
+                  <span class="metric-val">ISL</span>
+                  <span class="metric-label">Sign Vision Model</span>
+                </div>
+              </div>
+
+              <!-- 4 Skill Rows from Deepak's Portfolio -->
+              <div class="toolkit-groups">
+                <div class="toolkit-group">
+                  <span class="toolkit-group-code">01</span>
+                  <span class="toolkit-group-title">Languages:</span>
+                  <div class="toolkit-tags">
+                    <span class="chip-tech">C++</span>
+                    <span class="chip-tech">Python</span>
+                    <span class="chip-tech">HTML</span>
+                    <span class="chip-tech">CSS</span>
+                  </div>
+                </div>
+                <div class="toolkit-group">
+                  <span class="toolkit-group-code">02</span>
+                  <span class="toolkit-group-title">Build Tools:</span>
+                  <div class="toolkit-tags">
+                    <span class="chip-tech">Git</span>
+                    <span class="chip-tech">Visual Studio Code</span>
+                    <span class="chip-tech">FlutterFlow</span>
+                  </div>
+                </div>
+                <div class="toolkit-group">
+                  <span class="toolkit-group-code">03</span>
+                  <span class="toolkit-group-title">Connected Systems:</span>
+                  <div class="toolkit-tags">
+                    <span class="chip-tech">ESP32</span>
+                    <span class="chip-tech">Blynk IoT Platform</span>
+                    <span class="chip-tech">IoT Fundamentals</span>
+                  </div>
+                </div>
+                <div class="toolkit-group">
+                  <span class="toolkit-group-code">04</span>
+                  <span class="toolkit-group-title">Focus Areas:</span>
+                  <div class="toolkit-tags">
+                    <span class="chip-tech">Artificial Intelligence</span>
+                    <span class="chip-tech">Automation</span>
+                    <span class="chip-tech">Problem Solving</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="desk-note">
+                <span class="desk-note-badge">ALSO ON THE DESK</span>
+                <span>Programming fundamentals, chess strategy, and a strong appetite for the next technical challenge. <code>{ EXPLORE }</code></span>
+              </div>
+            </div>
+
+            <!-- Live Code Terminal with Deepak's ESP32 Firmware -->
+            <div class="lab-terminal">
+              <div class="terminal-bar">
+                <div class="terminal-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <span class="terminal-title">~/deepak-r/firmware/smartNozzle_ESP32.ino</span>
+                <span class="terminal-badge">LIVE C++ FIRMWARE</span>
+              </div>
+              <div class="terminal-body">
+                <pre class="terminal-code"><code id="code-stream">// Smart Pesticide Spraying Nozzle - Sensor Loop
+#include &lt;WiFi.h&gt;
+#include &lt;BlynkSimpleEsp32.h&gt;
+
+const int NOZZLE_PIN = 23;
+const int SENSOR_PIN = 34;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(NOZZLE_PIN, OUTPUT);
+  Blynk.begin(AUTH_TOKEN, SSID, PASS);
+  Serial.println("[SYSTEM READY: SENSE · DECIDE · SPRAY]");
+}
+
+void loop() {
+  Blynk.run();
+  float cropCondition = analogRead(SENSOR_PIN);
+  if (cropCondition > THRESHOLD_INFESTATION) {
+    digitalWrite(NOZZLE_PIN, HIGH); // Targeted Precision Spray
+    Blynk.virtualWrite(V1, "SPRAY_ACTIVE");
+  } else {
+    digitalWrite(NOZZLE_PIN, LOW);  // Preserve Chemical
+  }
+}</code></pre>
+              </div>
+              <div class="terminal-footer">
+                <span class="terminal-stat">MICROCONTROLLER STATUS: ACTIVE [ESP32-WROOM]</span>
+                <button class="terminal-btn btn-magnetic" id="run-glsl-btn" data-cursor="pulse 3d">PULSE SENSOR ⚡</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 5: FOUNDATION & EDUCATION (83% - 93%) -->
+      <section class="scene-stage" id="scene-honors" data-range="0.83,0.93">
+        <div class="scene-container honors-scene">
+          <div class="honors-header">
+            <div class="hud-pill">
+              <span class="pill-dot"></span>
+              <span>FOUNDATION / EDUCATION // 04</span>
+            </div>
+            <h2 class="scene-heading">
+              LEARNING IN PUBLIC, <span class="font-serif italic text-glow">BUILDING FOR THE FIELD.</span>
+            </h2>
+            <p class="honors-sub">Academic discipline backed by practical engineering outcomes.</p>
+          </div>
+
+          <div class="education-spotlight card-3d-tilt">
+            <div class="card-glare"></div>
+            <div class="edu-main">
+              <div class="edu-badge">DEGREE PROGRAM</div>
+              <h3 class="edu-degree">Bachelor of Engineering (B.E.)</h3>
+              <h4 class="edu-dept">Computer Science &amp; Engineering</h4>
+              <p class="edu-college">Shri Venkateshwara College of Engineering</p>
+              <div class="edu-timeline">
+                <span>Stage: 2nd Year (Semester III)</span>
+                <span>•</span>
+                <span>Location: Bangalore, India (13°02'N / 77°35'E)</span>
+              </div>
+            </div>
+
+            <div class="edu-score-card">
+              <span class="score-tag">FIRST-YEAR SCORE</span>
+              <span class="score-big">9.4</span>
+              <span class="score-denom">CGPA / 10.0</span>
+            </div>
+          </div>
+
+          <div class="honors-grid">
+            <div class="honor-card card-3d-tilt">
+              <div class="card-glare"></div>
+              <div class="honor-badge">CORE VALUE 01</div>
+              <h4 class="honor-title">Systems Thinker</h4>
+              <p class="honor-desc">Interested in how small technical choices connect to larger, resilient outcomes.</p>
+              <span class="honor-year">ARCHITECTURE</span>
+            </div>
+
+            <div class="honor-card card-3d-tilt">
+              <div class="card-glare"></div>
+              <div class="honor-badge">CORE VALUE 02</div>
+              <h4 class="honor-title">Impact Minded</h4>
+              <p class="honor-desc">Drawn to efficient, practical technology with measurable, real-world value.</p>
+              <span class="honor-year">FIELD PURPOSE</span>
+            </div>
+
+            <div class="honor-card card-3d-tilt">
+              <div class="card-glare"></div>
+              <div class="honor-badge">CORE VALUE 03</div>
+              <h4 class="honor-title">Always Learning</h4>
+              <p class="honor-desc">Comfortable exploring new tools, hardware frameworks, and unfamiliar technical terrain.</p>
+              <span class="honor-year">GROWTH</span>
+            </div>
+
+            <div class="honor-card card-3d-tilt">
+              <div class="card-glare"></div>
+              <div class="honor-badge">STRATEGY</div>
+              <h4 class="honor-title">Chess &amp; Tactics</h4>
+              <p class="honor-desc">Sharpening forward-thinking calculations, risk analysis, and positional problem-solving.</p>
+              <span class="honor-year">LOGIC</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 6: TRANSMISSION & CONTACT (94% - 100%) -->
+      <section class="scene-stage" id="scene-contact" data-range="0.94,1.0">
+        <div class="scene-container contact-scene">
+          <div class="hud-pill">
+            <span class="pill-dot"></span>
+            <span>NEXT ENTRY / LET'S CONNECT // 05</span>
+          </div>
+
+          <h2 class="contact-title">
+            <span class="contact-title__row">HAVE A PROBLEM TO EXPLORE?</span>
+            <span class="contact-title__row font-serif italic text-glow">LET'S CONNECT.</span>
+          </h2>
+
+          <p class="contact-lede">
+            Open for software discussions, applied AI experiments, IoT hardware collaborations, and student engineering challenges.
+          </p>
+
+          <!-- Direct Copy & Action Card -->
+          <div class="contact-actions-card card-3d-tilt">
+            <div class="card-glare"></div>
+            <div class="email-copy-box btn-magnetic" id="copy-email-box" data-cursor="copy email">
+              <span class="email-label">DIRECT CHANNEL</span>
+              <span class="email-value" id="email-address">deepak843161.438@gmail.com</span>
+              <button class="copy-badge-btn" id="copy-email-btn">COPY EMAIL</button>
+            </div>
+
+            <div class="contact-btn-row">
+              <a
+                href="https://www.linkedin.com/in/deepak-r-701b59429/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn--solid btn-magnetic"
+                data-cursor="linkedin"
+              >
+                <span>LINKEDIN PROFILE</span>
+                <span class="btn-arrow-up">↗</span>
+              </a>
+
+              <a href="mailto:deepak843161.438@gmail.com" class="btn btn--glass btn-magnetic" data-cursor="write email">
+                <span>SEND AN EMAIL ↗</span>
+              </a>
+
+              <a href="tel:+918431618438" class="btn btn--glass btn-magnetic" data-cursor="call">
+                <span>+91 84316 18438</span>
+              </a>
+
+              <a
+                href="https://github.com/deepak7-shadow"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn--glass btn-magnetic"
+                data-cursor="github"
+              >
+                <span>GITHUB (deepak7-shadow)</span>
+              </a>
+
+              <button class="btn btn--glass btn-magnetic" id="open-inquiry-btn" data-cursor="message">
+                <span>LEAVE BRIEF ⚡</span>
+              </button>
+            </div>
+          </div>
+
+          <footer class="hud-footer">
+            <span class="footer-copy">© 2026 DEEPAK R • B.E. COMPUTER SCIENCE &amp; ENGINEERING • SHRI VENKATESHWARA COLLEGE OF ENGINEERING</span>
+            <div class="footer-links">
+              <a
+                href="https://www.linkedin.com/in/deepak-r-701b59429/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LINKEDIN
+              </a>
+              <span class="footer-sep">•</span>
+              <a href="https://github.com/deepak7-shadow" target="_blank" rel="noopener noreferrer">GITHUB</a>
+              <span class="footer-sep">•</span>
+              <a href="#scene-hero">RETURN TO TOP ↑</a>
+            </div>
+          </footer>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Project Inspection Modal -->
+    <div id="project-modal" class="modal-backdrop">
+      <div class="modal-dialog">
+        <button id="modal-close-btn" class="modal-close" data-cursor="close">✕</button>
+        <div class="modal-header">
+          <span id="modal-id" class="modal-eyebrow">PROJECT 01</span>
+          <h2 id="modal-title" class="modal-title">SMART PESTICIDE NOZZLE</h2>
+          <span id="modal-tags" class="modal-tags">PRECISION AGRI-TECH • IOT • ESP32</span>
+        </div>
+        <div class="modal-body">
+          <div class="modal-visual" id="modal-visual">
+            <div class="visual-holo-glow"></div>
+            <div class="visual-badge" id="modal-badge">FIELD PROTOTYPE / ONGOING</div>
+          </div>
+          <div class="modal-desc" id="modal-desc">
+            Full specification overview...
+          </div>
+          <div class="modal-specs">
+            <div class="spec-col">
+              <span class="spec-label">SYSTEM STACK</span>
+              <span id="modal-arch" class="spec-val">ESP32 / Blynk IoT / FlutterFlow</span>
+            </div>
+            <div class="spec-col">
+              <span class="spec-label">THEME</span>
+              <span id="modal-time" class="spec-val">Sense · Decide · Spray</span>
+            </div>
+            <div class="spec-col">
+              <span class="spec-label">FIELD OUTCOME</span>
+              <span id="modal-impact" class="spec-val">Targeted Chemical Reduction</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn--solid modal-action-btn" id="modal-action-btn" href="mailto:deepak843161.438@gmail.com">
+            ASK ABOUT THIS BUILD ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Inquiry Modal -->
+    <div id="inquiry-modal" class="modal-backdrop">
+      <div class="modal-dialog modal-dialog--sm">
+        <button id="inquiry-close-btn" class="modal-close" data-cursor="close">✕</button>
+        <div class="modal-header">
+          <span class="modal-eyebrow">MESSAGE DISPATCH</span>
+          <h3 class="modal-title">WRITE TO DEEPAK R</h3>
+        </div>
+        <form id="inquiry-form" class="inquiry-form">
+          <div class="form-group">
+            <label for="inp-name">YOUR NAME / ORGANIZATION</label>
+            <input type="text" id="inp-name" required placeholder="e.g. Mentor / Collaborator / Team" />
+          </div>
+          <div class="form-group">
+            <label for="inp-email">YOUR EMAIL</label>
+            <input type="email" id="inp-email" required placeholder="name@domain.com" />
+          </div>
+          <div class="form-group">
+            <label for="inp-type">TOPIC</label>
+            <select id="inp-type">
+              <option value="iot">Smart Pesticide Spraying Nozzle Project</option>
+              <option value="signbridge">SignBridge Accessibility App</option>
+              <option value="arenahub">ArenaHub Sports Booking Platform</option>
+              <option value="general">Engineering Collaboration / Internship</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="inp-msg">MESSAGE BRIEF</label>
+            <textarea id="inp-msg" rows="3" required placeholder="Describe your inquiry, project, or question..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--solid w-full" id="inquiry-submit-btn">
+            <span>TRANSMIT BRIEF</span>
+            <span>⚡</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Global Toast Notification -->
+    <div id="toast" class="toast">
+      <span class="toast-icon">✓</span>
+      <span id="toast-msg">Email copied to clipboard!</span>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

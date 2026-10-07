@@ -1,0 +1,18 @@
+{
+  "name": "deepak-r-spatial-portfolio",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.20",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "three": "^0.186.1"
+  }
+}
